@@ -17,9 +17,12 @@ func main() {
 		log.Fatal("error to load .env file")
 	}
 
-	elapsed, _ := strconv.Atoi(os.Getenv("ELAPSED"))
+	interval, err := strconv.Atoi(os.Getenv("INTERVAL"))
+	if err != nil {
+		log.Fatal("error reading .env file")
+	}
 
-	ticker := time.NewTicker(time.Duration(elapsed) * time.Minute)
+	ticker := time.NewTicker(time.Duration(interval) * time.Minute)
 
 	// DB Configuration
 
